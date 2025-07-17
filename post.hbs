@@ -1,0 +1,125 @@
+{{!< default}}
+
+<div class="min-h-screen bg-black text-white">
+  <!-- Post Header -->
+  <header class="post-header bg-gradient-to-b from-blue-900 to-purple-900 py-20">
+    <div class="container mx-auto px-4 text-center">
+      {{#if featuredImage}}
+      <div class="mb-8">
+        <img src="{{featuredImage.url}}" alt="{{title}}" class="max-w-4xl mx-auto rounded-lg shadow-lg">
+      </div>
+      {{/if}}
+
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white">{{title}}</h1>
+
+      <div class="post-meta flex items-center justify-center gap-6 text-gray-300">
+        <span>By {{author.name}}</span>
+        <span>•</span>
+        <time datetime="{{date createdAt 'YYYY-MM-DD'}}">{{date createdAt "MMMM DD, YYYY"}}</time>
+        {{#if tags}}
+        <span>•</span>
+        <div class="flex gap-2">
+          {{#each tags}}
+          <a href="{{url}}" class="text-cyan-400 hover:text-cyan-300 transition-colors">#{{name}}</a>
+          {{/each}}
+        </div>
+        {{/if}}
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article class="py-20">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="post-content prose prose-lg prose-invert max-w-none">
+          {{{text}}}
+        </div>
+
+        <!-- Post Footer -->
+        <footer class="mt-12 pt-8 border-t border-gray-800">
+          <!-- Author Bio -->
+          {{#if author.avatar}}
+          <div class="flex items-center gap-4 mb-8">
+            <img src="{{author.avatar}}" alt="{{author.name}}" class="w-16 h-16 rounded-full">
+            <div>
+              <h3 class="text-xl font-bold text-white">{{author.name}}</h3>
+              {{#if author.description}}
+              <p class="text-gray-300">{{author.description}}</p>
+              {{/if}}
+            </div>
+          </div>
+          {{/if}}
+
+          <!-- Tags -->
+          {{#if tags}}
+          <div class="mb-8">
+            <h3 class="text-lg font-bold text-white mb-4">Tags</h3>
+            <div class="flex flex-wrap gap-2">
+              {{#each tags}}
+              <a href="{{url}}" class="bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded transition-colors">
+                {{name}}
+              </a>
+              {{/each}}
+            </div>
+          </div>
+          {{/if}}
+
+          <!-- Share Buttons -->
+          <div class="mb-8">
+            <h3 class="text-lg font-bold text-white mb-4">Share this post</h3>
+            <div class="flex gap-4">
+              <a href="https://twitter.com/intent/tweet?url={{@website.url}}{{url}}&text={{title}}"
+                 target="_blank"
+                 rel="noopener"
+                 class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition-colors">
+                Twitter
+              </a>
+              <a href="https://www.facebook.com/sharer/sharer.php?u={{@website.url}}{{url}}"
+                 target="_blank"
+                 rel="noopener"
+                 class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded transition-colors">
+                Facebook
+              </a>
+              <a href="https://www.linkedin.com/sharing/share-offsite/?url={{@website.url}}{{url}}"
+                 target="_blank"
+                 rel="noopener"
+                 class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors">
+                LinkedIn
+              </a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </article>
+
+  <!-- Related Posts -->
+  {{#if relatedPosts}}
+  <section class="py-20 bg-gradient-to-b from-blue-900 to-blue-800">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-white mb-12">Related Posts</h2>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {{#each relatedPosts}}
+        <article class="bg-black/30 rounded-lg overflow-hidden hover-lift">
+          {{#if featuredImage}}
+          <img src="{{featuredImage.url}}" alt="{{title}}" class="w-full h-48 object-cover">
+          {{/if}}
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-white mb-3">
+              <a href="{{url}}" class="hover:text-yellow-400 transition-colors">{{title}}</a>
+            </h3>
+            <p class="text-gray-300 mb-4">{{excerpt}}</p>
+            <div class="flex items-center justify-between text-sm text-gray-400">
+              <span>{{date createdAt "MMM DD, YYYY"}}</span>
+              <a href="{{url}}" class="text-yellow-400 hover:text-yellow-300 transition-colors">Read More</a>
+            </div>
+          </div>
+        </article>
+        {{/each}}
+      </div>
+    </div>
+  </section>
+  {{/if}}
+</div>

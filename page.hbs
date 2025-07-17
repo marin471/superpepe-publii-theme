@@ -1,0 +1,31 @@
+{{!< default}}
+
+<div class="min-h-screen bg-black text-white">
+  <!-- Page Header -->
+  <header class="post-header bg-gradient-to-b from-blue-900 to-purple-900 py-20">
+    <div class="container mx-auto px-4 text-center">
+      {{#if featuredImage}}
+      <div class="mb-8">
+        <img src="{{featuredImage.url}}" alt="{{title}}" class="max-w-4xl mx-auto rounded-lg shadow-lg">
+      </div>
+      {{/if}}
+
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white">{{title}}</h1>
+
+      {{#if excerpt}}
+      <p class="text-xl text-gray-300 max-w-2xl mx-auto">{{excerpt}}</p>
+      {{/if}}
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <main class="py-20">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="post-content prose prose-lg prose-invert max-w-none">
+          {{{text}}}
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

@@ -1,0 +1,132 @@
+{
+  "name": "SuperPepe",
+  "version": "1.0.0",
+  "author": "AI Assistant",
+  "description": "A modern crypto presale theme based on SuperPepe design with animated backgrounds, presale widgets, and meme coin aesthetics.",
+  "engine": "handlebars",
+  "directory": "superpepe",
+  "files": {
+    "renderer": "handlebars"
+  },
+  "supportedFeatures": [
+    "posts",
+    "pages",
+    "tags",
+    "authors",
+    "pagination",
+    "search",
+    "sitemap",
+    "galleries",
+    "customConfig"
+  ],
+  "customConfig": [
+    {
+      "name": "siteTitle",
+      "label": "Site Title",
+      "group": "Brand",
+      "type": "text",
+      "default": "SUPER PEPE"
+    },
+    {
+      "name": "siteSubtitle",
+      "label": "Site Subtitle",
+      "group": "Brand",
+      "type": "text",
+      "default": "FIRST MEME COIN WITH A MISSION TO HELP PEOPLE BY DONATING 10% OF EVERY PURCHASE TO CHARITY"
+    },
+    {
+      "name": "presaleActive",
+      "label": "Show Presale Widget",
+      "group": "Presale",
+      "type": "checkbox",
+      "default": true
+    },
+    {
+      "name": "presalePrice",
+      "label": "Token Price",
+      "group": "Presale",
+      "type": "text",
+      "default": "$0.00008"
+    },
+    {
+      "name": "fundsRaised",
+      "label": "Funds Raised",
+      "group": "Presale",
+      "type": "text",
+      "default": "$509,179.7"
+    },
+    {
+      "name": "fundingGoal",
+      "label": "Funding Goal",
+      "group": "Presale",
+      "type": "text",
+      "default": "$1,000,000"
+    },
+    {
+      "name": "countdownDays",
+      "label": "Countdown Days",
+      "group": "Presale",
+      "type": "number",
+      "default": 10
+    },
+    {
+      "name": "countdownHours",
+      "label": "Countdown Hours",
+      "group": "Presale",
+      "type": "number",
+      "default": 4
+    },
+    {
+      "name": "countdownMinutes",
+      "label": "Countdown Minutes",
+      "group": "Presale",
+      "type": "number",
+      "default": 57
+    },
+    {
+      "name": "countdownSeconds",
+      "label": "Countdown Seconds",
+      "group": "Presale",
+      "type": "number",
+      "default": 38
+    },
+    {
+      "name": "heroCharacterImage",
+      "label": "Hero Character Image",
+      "group": "Images",
+      "type": "upload"
+    },
+    {
+      "name": "aboutSectionImage",
+      "label": "About Section Image",
+      "group": "Images",
+      "type": "upload"
+    },
+    {
+      "name": "socialTwitter",
+      "label": "Twitter/X URL",
+      "group": "Social",
+      "type": "text"
+    },
+    {
+      "name": "socialTelegram",
+      "label": "Telegram URL",
+      "group": "Social",
+      "type": "text"
+    }
+  ],
+  "menus": {
+    "main": {
+      "label": "Main Menu",
+      "position": "header"
+    }
+  },
+  "renderer": {
+    "create": true,
+    "minify": {
+      "css": true,
+      "js": true,
+      "html": false
+    }
+  }
+}
