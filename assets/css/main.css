@@ -1,0 +1,123 @@
+/*
+ * SuperPepe Publii Theme - Main CSS File
+ * Imports all theme styles and animations
+ */
+
+/* Import base styles */
+@import url('style.css');
+
+/* Import animations */
+@import url('animations.css');
+
+/* Additional Publii-specific overrides */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure proper image handling in Publii */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Publii content wrapper */
+.content-wrapper {
+  min-height: 100vh;
+}
+
+/* Fix for Publii's default link styles */
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* Publii post content styling */
+.post__content,
+.page__content {
+  color: #d1d5db;
+  line-height: 1.6;
+}
+
+.post__content h1,
+.post__content h2,
+.post__content h3,
+.post__content h4,
+.post__content h5,
+.post__content h6,
+.page__content h1,
+.page__content h2,
+.page__content h3,
+.page__content h4,
+.page__content h5,
+.page__content h6 {
+  color: #ffffff;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.post__content p,
+.page__content p {
+  margin-bottom: 1rem;
+}
+
+.post__content ul,
+.post__content ol,
+.page__content ul,
+.page__content ol {
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+}
+
+.post__content blockquote,
+.page__content blockquote {
+  border-left: 4px solid #22d3ee;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+  color: #9ca3af;
+}
+
+.post__content code,
+.page__content code {
+  background-color: #374151;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-family: 'Courier New', monospace;
+  color: #22d3ee;
+}
+
+.post__content pre,
+.page__content pre {
+  background-color: #1f2937;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.post__content pre code,
+.page__content pre code {
+  background: none;
+  padding: 0;
+}
+
+/* Gallery styles */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.gallery img {
+  border-radius: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
