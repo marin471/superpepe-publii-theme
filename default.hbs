@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="{{@website.language}}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {{> head}}
+
+    <link rel="stylesheet" href="{{@website.assetsUrl}}/css/complete-styles.css">
+    <style>
+        /* Critical inline styles as backup */
+        body {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .min-h-screen { min-height: 100vh !important; }
+        .bg-black { background-color: #000000 !important; }
+        .text-white { color: #ffffff !important; }
+        .text-gray-300 { color: #d1d5db !important; }
+        .text-yellow-400 { color: #facc15 !important; }
+        .text-green-400 { color: #4ade80 !important; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+        .bg-gradient-to-br { background: linear-gradient(135deg, #1e3a8a 0%, #581c87 50%, #000000 100%) !important; }
+        .relative { position: relative !important; }
+        .absolute { position: absolute !important; }
+        .fixed { position: fixed !important; }
+        .flex { display: flex !important; }
+        .grid { display: grid !important; }
+        .items-center { align-items: center !important; }
+        .justify-center { justify-content: center !important; }
+        .text-center { text-align: center !important; }
+        .py-20 { padding-top: 5rem !important; padding-bottom: 5rem !important; }
+        .mb-8 { margin-bottom: 2rem !important; }
+        .text-4xl { font-size: 2.25rem !important; }
+        .font-bold { font-weight: 700 !important; }
+    </style>
+</head>
+<body class="{{body_class}}">
+
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-sm border-b border-gray-800">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                {{#if @website.logo}}
+                <img src="{{@website.logo}}" alt="{{@website.name}}" class="w-8 h-8">
+                {{/if}}
+                <span class="text-xl font-bold text-cyan-400">
+                    <a href="{{@website.url}}" class="no-underline">{{@config.custom.siteTitle}}</a>
+                </span>
+            </div>
+
+            {{> navigation}}
+
+            <button class="bg-cyan-500 hover:bg-cyan-600 text-black font-bold px-4 py-2 rounded transition-colors">
+                Connect Wallet
+            </button>
+
+            <!-- Mobile menu button -->
+            <button class="md:hidden text-white" id="mobile-menu-toggle">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden bg-black/95 backdrop-blur-sm border-t border-gray-800" id="mobile-menu">
+            <div class="container mx-auto px-4 py-4 space-y-4">
+                {{#menu "main"}}
+                    {{#each this}}
+                    <a href="{{url}}" class="block text-white hover:text-cyan-400 transition-colors {{#if isActive}}text-cyan-400{{/if}}">
+                        {{label}}
+                    </a>
+                    {{/each}}
+                {{/menu}}
+
+                <!-- Default navigation if no menu is set -->
+                {{#unless @website.menus.main}}
+                <a href="#about" class="block text-white hover:text-cyan-400 transition-colors">About</a>
+                <a href="#story" class="block text-white hover:text-cyan-400 transition-colors">History</a>
+                <a href="#roadmap" class="block text-white hover:text-cyan-400 transition-colors">Roadmap</a>
+                <a href="#how-to-buy" class="block text-white hover:text-cyan-400 transition-colors">How To Buy</a>
+                <a href="#faqs" class="block text-white hover:text-cyan-400 transition-colors">FAQs</a>
+                {{/unless}}
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        {{{body}}}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12 border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Disclaimer</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        The information provided in this presale is for informational purposes only and does not constitute financial advice.
+                        Cryptocurrencies and tokens are highly speculative and volatile. By participating in the presale, you confirm compliance
+                        with all applicable laws and regulations of your jurisdiction, as the sale may be restricted or prohibited in certain areas.
+                    </p>
+
+                    <p class="text-gray-500 text-xs mt-6">
+                        © {{currentYear}} {{@website.name}}. All rights reserved.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Social Links</h3>
+                    <div class="flex gap-4">
+                        {{#if @config.custom.socialTwitter}}
+                        <a href="{{@config.custom.socialTwitter}}" class="text-gray-400 hover:text-white transition-colors" target="_blank" rel="noopener">
+                            <span class="text-2xl">𝕏</span>
+                        </a>
+                        {{/if}}
+                        {{#if @config.custom.socialTelegram}}
+                        <a href="{{@config.custom.socialTelegram}}" class="text-gray-400 hover:text-white transition-colors" target="_blank" rel="noopener">
+                            <span class="text-2xl">📱</span>
+                        </a>
+                        {{/if}}
+                    </div>
+
+                    {{#if @website.socialMedia}}
+                    <div class="mt-4">
+                        {{#each @website.socialMedia}}
+                        <a href="{{url}}" class="text-gray-400 hover:text-white transition-colors mr-4" target="_blank" rel="noopener">
+                            {{name}}
+                        </a>
+                        {{/each}}
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{@website.assetsUrl}}/js/scripts.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggle = document.getElementById('mobile-menu-toggle');
+            const menu = document.getElementById('mobile-menu');
+
+            if (toggle && menu) {
+                toggle.addEventListener('click', function() {
+                    menu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
+
+    {{> footer}}
+</body>
+</html>

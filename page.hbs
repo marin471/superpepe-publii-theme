@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="{{@website.language}}">
+<head>
+    {{> head}}
+    <link rel="stylesheet" href="{{@website.assetsUrl}}/css/complete-styles.css">
+    <style>
+        body {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .min-h-screen { min-height: 100vh !important; }
+        .bg-black { background-color: #000000 !important; }
+        .text-white { color: #ffffff !important; }
+        .text-gray-300 { color: #d1d5db !important; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+        .bg-gradient-to-br { background: linear-gradient(135deg, #1e3a8a 0%, #581c87 50%, #000000 100%) !important; }
+        .py-20 { padding-top: 5rem !important; padding-bottom: 5rem !important; }
+        .mb-8 { margin-bottom: 2rem !important; }
+        .text-4xl { font-size: 2.25rem !important; }
+        .font-bold { font-weight: 700 !important; }
+        .text-center { text-align: center !important; }
+    </style>
+</head>
+<body>
+
+<div class="min-h-screen bg-black text-white">
+  <!-- Page Header -->
+  <header class="post-header bg-gradient-to-b from-blue-900 to-purple-900 py-20">
+    <div class="container mx-auto px-4 text-center">
+      {{#if featuredImage}}
+      <div class="mb-8">
+        <img src="{{featuredImage.url}}" alt="{{title}}" class="max-w-4xl mx-auto rounded-lg shadow-lg">
+      </div>
+      {{/if}}
+
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white">{{title}}</h1>
+
+      {{#if excerpt}}
+      <p class="text-xl text-gray-300 max-w-2xl mx-auto">{{excerpt}}</p>
+      {{/if}}
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <main class="py-20">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="post-content prose prose-lg prose-invert max-w-none">
+          {{{text}}}
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="{{@website.assetsUrl}}/js/scripts.js"></script>
+{{> footer}}
+</body>
+</html>

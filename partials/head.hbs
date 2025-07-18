@@ -1,0 +1,100 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+{{#if @website.pageTitle}}
+<title>{{@website.pageTitle}}</title>
+{{else}}
+<title>{{@website.name}}</title>
+{{/if}}
+
+{{#if metaDescription}}
+<meta name="description" content="{{metaDescription}}">
+{{else if @website.description}}
+<meta name="description" content="{{@website.description}}">
+{{/if}}
+
+{{#if metaRobots}}
+<meta name="robots" content="{{metaRobots}}">
+{{/if}}
+
+<link rel="canonical" href="{{url}}">
+
+{{#if @website.logo}}
+<link rel="icon" href="{{@website.logo}}" type="image/png">
+{{/if}}
+
+<!-- Open Graph Meta Tags -->
+<meta property="og:site_name" content="{{@website.name}}">
+<meta property="og:type" content="{{#if post}}article{{else}}website{{/if}}">
+<meta property="og:title" content="{{#if @website.pageTitle}}{{@website.pageTitle}}{{else}}{{@website.name}}{{/if}}">
+{{#if metaDescription}}
+<meta property="og:description" content="{{metaDescription}}">
+{{else if @website.description}}
+<meta property="og:description" content="{{@website.description}}">
+{{/if}}
+<meta property="og:url" content="{{url}}">
+{{#if featuredImage}}
+<meta property="og:image" content="{{featuredImage.url}}">
+{{else if @website.logo}}
+<meta property="og:image" content="{{@website.logo}}">
+{{/if}}
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{#if @website.pageTitle}}{{@website.pageTitle}}{{else}}{{@website.name}}{{/if}}">
+{{#if metaDescription}}
+<meta name="twitter:description" content="{{metaDescription}}">
+{{else if @website.description}}
+<meta name="twitter:description" content="{{@website.description}}">
+{{/if}}
+{{#if featuredImage}}
+<meta name="twitter:image" content="{{featuredImage.url}}">
+{{else if @website.logo}}
+<meta name="twitter:image" content="{{@website.logo}}">
+{{/if}}
+
+<!-- RSS Feed -->
+{{#if @website.advanced.feed.enableRss}}
+<link rel="alternate" type="application/rss+xml" title="{{@website.name}}" href="{{@website.url}}/feed.xml">
+{{/if}}
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{@website.name}}",
+  "url": "{{@website.url}}",
+  {{#if @website.description}}
+  "description": "{{@website.description}}",
+  {{/if}}
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{@website.name}}"
+  }
+}
+</script>
+
+{{#if post}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{title}}",
+  "datePublished": "{{date createdAt 'YYYY-MM-DDTHH:mm:ss'}}Z",
+  "dateModified": "{{date modifiedAt 'YYYY-MM-DDTHH:mm:ss'}}Z",
+  {{#if featuredImage}}
+  "image": "{{featuredImage.url}}",
+  {{/if}}
+  "author": {
+    "@type": "Person",
+    "name": "{{author.name}}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{@website.name}}"
+  }
+}
+</script>
+{{/if}}

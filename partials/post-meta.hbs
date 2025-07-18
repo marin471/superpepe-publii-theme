@@ -1,0 +1,32 @@
+<!-- Post Meta Information -->
+<div class="post-meta flex items-center justify-center gap-6 text-gray-300 text-sm">
+    {{#if author}}
+    <span class="flex items-center gap-2">
+        {{#if author.avatar}}
+        <img src="{{author.avatar}}" alt="{{author.name}}" class="w-6 h-6 rounded-full">
+        {{/if}}
+        <span>By {{author.name}}</span>
+    </span>
+    {{/if}}
+
+    {{#if createdAt}}
+    <span>•</span>
+    <time datetime="{{date createdAt 'YYYY-MM-DD'}}">
+        {{date createdAt "MMMM DD, YYYY"}}
+    </time>
+    {{/if}}
+
+    {{#if readingTime}}
+    <span>•</span>
+    <span>{{readingTime}} min read</span>
+    {{/if}}
+
+    {{#if tags}}
+    <span>•</span>
+    <div class="flex gap-2">
+        {{#each tags}}
+        <a href="{{url}}" class="text-cyan-400 hover:text-cyan-300 transition-colors">#{{name}}</a>
+        {{/each}}
+    </div>
+    {{/if}}
+</div>

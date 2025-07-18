@@ -1,0 +1,26 @@
+{{#if @website.advanced.googleAnalytics.code}}
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{@website.advanced.googleAnalytics.code}}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '{{@website.advanced.googleAnalytics.code}}');
+</script>
+{{/if}}
+
+{{#if @website.advanced.gtm.code}}
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{@website.advanced.gtm.code}}"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+{{/if}}
+
+{{#if @website.advanced.customCode.footer}}
+<!-- Custom Footer Code -->
+{{{@website.advanced.customCode.footer}}}
+{{/if}}
+
+{{#if @website.advanced.feed.enableJsonFeed}}
+<!-- JSON Feed -->
+<link rel="alternate" type="application/feed+json" title="{{@website.name}}" href="{{@website.url}}/feed.json">
+{{/if}}

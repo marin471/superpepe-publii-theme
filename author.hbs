@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="{{@website.language}}">
+<head>
+    {{> head}}
+    <link rel="stylesheet" href="{{@website.assetsUrl}}/css/complete-styles.css">
+    <style>
+        body {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .min-h-screen { min-height: 100vh !important; }
+        .bg-black { background-color: #000000 !important; }
+        .text-white { color: #ffffff !important; }
+        .text-gray-300 { color: #d1d5db !important; }
+        .text-cyan-400 { color: #22d3ee !important; }
+        .text-yellow-400 { color: #facc15 !important; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+        .bg-gradient-to-br { background: linear-gradient(135deg, #1e3a8a 0%, #581c87 50%, #000000 100%) !important; }
+        .bg-gradient-to-b { background: linear-gradient(to bottom, var(--gradient-from), var(--gradient-to)) !important; }
+        .from-blue-900 { --gradient-from: #1e3a8a; }
+        .to-purple-900 { --gradient-to: #581c87; }
+        .to-blue-800 { --gradient-to: #1e40af; }
+        .flex { display: flex !important; }
+        .grid { display: grid !important; }
+        .items-center { align-items: center !important; }
+        .justify-center { justify-content: center !important; }
+        .text-center { text-align: center !important; }
+        .py-20 { padding-top: 5rem !important; padding-bottom: 5rem !important; }
+        .mb-8 { margin-bottom: 2rem !important; }
+        .text-4xl { font-size: 2.25rem !important; }
+        .font-bold { font-weight: 700 !important; }
+        .rounded-full { border-radius: 9999px !important; }
+        .border-4 { border-width: 4px !important; }
+        .border-cyan-400 { border-color: #22d3ee !important; }
+    </style>
+</head>
+<body>
+
+<div class="min-h-screen bg-black text-white">
+  <!-- Author Header -->
+  <header class="post-header bg-gradient-to-b from-blue-900 to-purple-900 py-20">
+    <div class="container mx-auto px-4 text-center">
+      {{#if author.avatar}}
+      <div class="mb-8">
+        <img src="{{author.avatar}}" alt="{{author.name}}" class="w-32 h-32 rounded-full mx-auto border-4 border-cyan-400">
+      </div>
+      {{/if}}
+
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white">{{author.name}}</h1>
+
+      {{#if author.description}}
+      <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-6">{{author.description}}</p>
+      {{/if}}
+
+      <div class="flex items-center justify-center gap-6 text-gray-300">
+        <span>{{postsNumber}} {{#if postsNumber.eq.1}}post{{else}}posts{{/if}}</span>
+
+        {{#if author.website}}
+        <span>•</span>
+        <a href="{{author.website}}" target="_blank" rel="noopener" class="text-cyan-400 hover:text-cyan-300 transition-colors">
+          🌐 Website
+        </a>
+        {{/if}}
+
+        {{#if author.twitter}}
+        <span>•</span>
+        <a href="https://twitter.com/{{author.twitter}}" target="_blank" rel="noopener" class="text-cyan-400 hover:text-cyan-300 transition-colors">
+          🐦 Twitter
+        </a>
+        {{/if}}
+      </div>
+    </div>
+  </header>
+
+  <!-- Author Posts -->
+  <section class="py-20 bg-gradient-to-b from-blue-900 to-blue-800">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-white mb-12">
+        Posts by {{author.name}}
+      </h2>
+
+      {{#if posts}}
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {{#each posts}}
+        {{> post-card}}
+        {{/each}}
+      </div>
+
+      <!-- Pagination -->
+      {{> pagination}}
+
+      {{else}}
+      <div class="text-center py-20">
+        <h3 class="text-2xl font-bold text-white mb-4">No posts yet</h3>
+        <p class="text-gray-300 mb-8">{{author.name}} hasn't published any posts yet.</p>
+        <a href="{{@website.url}}" class="bg-cyan-500 hover:bg-cyan-600 text-black font-bold px-6 py-3 rounded transition-colors">
+          Go Back Home
+        </a>
+      </div>
+      {{/if}}
+    </div>
+  </section>
+</div>
+
+<script src="{{@website.assetsUrl}}/js/scripts.js"></script>
+{{> footer}}
+</body>
+</html>

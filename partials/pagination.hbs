@@ -1,0 +1,34 @@
+{{#if pagination}}
+<nav class="pagination mt-16 flex justify-center" aria-label="Pagination">
+    <div class="flex items-center gap-4">
+        {{#if pagination.previousPage}}
+        <a href="{{pagination.previousPage.url}}"
+           class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors"
+           aria-label="Previous page">
+            ← Previous
+        </a>
+        {{else}}
+        <span class="bg-gray-700 text-gray-400 px-4 py-2 rounded cursor-not-allowed">
+            ← Previous
+        </span>
+        {{/if}}
+
+        <!-- Page numbers -->
+        <span class="text-gray-300 px-4 py-2">
+            Page {{pagination.currentPage}} of {{pagination.totalPages}}
+        </span>
+
+        {{#if pagination.nextPage}}
+        <a href="{{pagination.nextPage.url}}"
+           class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors"
+           aria-label="Next page">
+            Next →
+        </a>
+        {{else}}
+        <span class="bg-gray-700 text-gray-400 px-4 py-2 rounded cursor-not-allowed">
+            Next →
+        </span>
+        {{/if}}
+    </div>
+</nav>
+{{/if}}
